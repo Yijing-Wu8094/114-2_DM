@@ -17,7 +17,7 @@ A1：
 Q2：SimpleImputer 的 strategy 參數有 mean、median、most_frequent 三種常用策略。
     請分別說明這三種策略各自適合什麼樣的資料情境，並各舉一個例子。
 •	A2：
-mean (平均值)： 
+mean (平均值)
 o	適合情境： 數值型資料，且呈現常態分佈、沒有嚴重的極端值。
 o	例子： 填補遺失的身高資料，因為人群身高分佈相對集中且對稱。
 •	median (中位數)： 
