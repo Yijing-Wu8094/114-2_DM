@@ -6,7 +6,35 @@ ValueError: could not convert string to float: 'sales' 表示 df.corr() 方法�
 ```
 #sns.heatmap(df.corr().round(2), annot=True, cmap='coolwarm');
 sns.heatmap(df.corr(numeric_only=True).round(2), annot=True, cmap='coolwarm');
-```
+出現此錯誤的原因是該df.corr()函數試圖計算包含文字資料（例如「銷售額」）的列的相關性，而它無法將文字資料轉換為數字。為了解決這個問題，我將修改程式碼，使其只計算 DataFrame 中數值列的相關性。
+
+## Error02
+df.drop('left', axis=1).corrwith(df['left']).round(2)
+df.drop('left', axis=1).select_dtypes(include=np.number).corrwith(df['left']).round(2)
+出現此錯誤的原因是該corrwith()函數試圖計算包含文字資料（例如「銷售額」）的列的相關性，而它無法將文字資料轉換為數字。為了解決這個問題，我將修改程式碼，使其只計算 DataFrame 中數值列與「left」列的相關性。
+
+
+## Error03
+print('正確率：', accuracy_score(y_test, y_pred).round(2))
+print('正確率：', round(accuracy_score(y_test, y_pred), 2))
+錯誤訊息AttributeError: 'float' object has no attribute 'round'表示您試圖.round()對浮點數使用方法。accuracy_score()此方法傳回一個浮點數，要對其進行四捨五入，您應該使用內建round()函數，例如round(value, decimal_places)。
+
+## Error04
+print('測試集的結果', score.round(3))
+print('測試集的結果', round(score, 3))
+這個錯誤AttributeError: 'float' object has no attribute 'round'意味著你試圖.round()對浮點數使用一個方法。在 Python 中，你應該使用全域函數。我會透過修改來round()糾正這個問題。score.round(3)round(score, 3)
+
+
+
+## Error05
+print('測試集的結果', score.round(3))
+print('測試集的結果', round(score, 3))
+錯誤「AttributeError: 'float' 物件沒有屬性 'round'」表示您試圖.round()直接對浮點數呼叫方法。在 Python 中，您應該使用全域round()函數。我會修改程式碼。
+
+
+
+
+
 這行程式碼的目的是繪製一個相關性熱力圖（heatmap），用來視覺化資料框 df 中各數值型欄位之間的相關性。具體來說：
 - df.corr(numeric_only=True): 計算資料框 df 中所有數值型欄位之間的皮爾遜相關係數。numeric_only=True 確保只對數值型欄位進行計算，避免非數值型欄位導致的錯誤。
 - .round(2): 將相關係數的結果四捨五入到小數點後兩位，使圖表更易讀
